@@ -11,7 +11,7 @@ deadline = datetime.combine(
 def Average(lst):
     return sum(lst) / len(lst)
  
-g= Github("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")
+g= Github("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")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 rep=usr.get_repos()
@@ -49,7 +49,8 @@ if usr.location is not None:
   print("location: " +usr.location)
 if usr.company is not None:
   print("company: " +usr.company)
-     
+print(usr.bio)    
+print(usr.tes)  
 print(Average(a))  
 print(count)
 print("issues:"+str(contk))
