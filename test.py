@@ -16,11 +16,11 @@ deadline = datetime.combine(
     date.today() + relativedelta(months=-2), 
     datetime.min.time()
 )
-
 def Average(lst):
     return sum(lst) / len(lst)
+
 tk = os.getenv('GITHUB_PAT')
-g= Github("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")
+g= Github("")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 
@@ -37,6 +37,7 @@ def printer(usr):
   c=0
   count=0
   contk=0
+  contc=0
   for repw in rep:
     count=count+1
     #print(count)
@@ -58,14 +59,19 @@ def printer(usr):
        log['total_commits'] = c
       else:
      #  print("no latest commits")
-       log['commit']=0
+     
        break
     open_issues = repw.get_issues(state='open')
     #print(list(repw.get_labels()))
     for issue in open_issues:
      #print(issue)
      contk=contk+1
-      
+
+    closed_issues = repw.get_issues(state='closed')
+    #print(list(repw.get_labels()))
+    for issu in closed_issues:
+     #print(issue)
+     contc=contc+1  
   if usr.login is not None:
     #print("user:" + usr.login)
     log['login']=names[usr.login].replace(" ", "") 
@@ -74,7 +80,7 @@ def printer(usr):
     log['fullname']=names[usr.name]
   if usr.location is not None:
    # print("location: " +usr.location)
-    log['location']=usr.location
+    log['location']=usr.location.replace(",", "")
   if usr.company is not None:
    # print("company: " +usr.company)
     log['company']=usr.company
@@ -82,24 +88,30 @@ def printer(usr):
     log['average_stars']=Average(a)  
   #print(count)
   #print("issues:"+str(contk))  
-    log['issues'] = contk
+    log['open_issues'] = contk
+    log['closed_issues'] =contc
+    
+    
     
     for k, v in dict(log).items():
+      
       if v is None:
         del log[k]
+        
   f=usr.get_followers()
  #print(f.totalCount)
+  #print(json.dumps(log))
   print(log)
-
   log['followers'] = f.totalCount
-  db.githubuser.insert_many([log])
+  if '_id' in log :
+    del log['_id']
+  db.githubuser.insert_one(log)
 
 printer(usr)  
 #print("------------------followers---------------------------------")
 f=usr.get_followers()
 #print(f.totalCount)
 
-log['followers'] = f.totalCount
 if f.totalCount != 0:
  for e in f:
  

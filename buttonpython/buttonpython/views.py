@@ -1,4 +1,7 @@
+import json
 from os import popen
+import json
+from django.http import JsonResponse
 from django.shortcuts import render
 import requests
 from collections import defaultdict
@@ -13,7 +16,7 @@ def output(request):
     data=data.text
     return render(request,'index.html',{'data':data})
 def external(request):
-    
+    out=defaultdict(dict)
     inp= request.POST.get('param')
     hello=run([sys.executable,'D:\study\csu33012-python-github\\cleardb.py'],shell=False,stdout=PIPE)
     print(hello)
@@ -21,6 +24,7 @@ def external(request):
     print(hel)
     out=run([sys.executable,'D:\study\csu33012-python-github\\script2.py'],shell=False,stdout=PIPE)
     print(out)
+    #js = json.dumps(out)
     
-   
+   # return JsonResponse({'data1': js})
     return render(request,'index.html',{'data1':out.stdout})
