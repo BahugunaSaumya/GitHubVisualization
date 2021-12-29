@@ -20,18 +20,19 @@ def Average(lst):
     return sum(lst) / len(lst)
 
 tk = os.getenv('GITHUB_PAT')
-g= Github("")
+g= Github("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")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 
 #print(f.totalCount)
 from collections import defaultdict
-log = {}
+
 names=defaultdict(faker.name)
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
 db = client.classDB
 def printer(usr):
+  log = {}
   rep=usr.get_repos()
   a=[]
   c=0
@@ -59,7 +60,6 @@ def printer(usr):
        log['total_commits'] = c
       else:
      #  print("no latest commits")
-     
        break
     open_issues = repw.get_issues(state='open')
     #print(list(repw.get_labels()))
@@ -71,41 +71,45 @@ def printer(usr):
     #print(list(repw.get_labels()))
     for issu in closed_issues:
      #print(issue)
-     contc=contc+1  
-  if usr.login is not None:
-    #print("user:" + usr.login)
-    log['login']=names[usr.login].replace(" ", "") 
-  if usr.name is not None:
-   # print("fullname: " +usr.name)
-    log['fullname']=names[usr.name]
-  if usr.location is not None:
+     contc=contc+1
+  if log.get('total_commits') is None :
+     log['total_commits'] =0     
+  
+  print("user:" + usr.login)
+  log['login']=names[usr.login].replace(" ", "") 
+    
+  print("fullname: " +usr.name)
+  log['fullname']=names[usr.name]
+  
    # print("location: " +usr.location)
-    log['location']=usr.location.replace(",", "")
-  if usr.company is not None:
+  log['location']=usr.location.replace(",", "")
+  
    # print("company: " +usr.company)
-    log['company']=usr.company
+  log['company']=usr.company
   #print(Average(a))
-    log['average_stars']=Average(a)  
+  log['average_stars']=Average(a)  
   #print(count)
   #print("issues:"+str(contk))  
-    log['open_issues'] = contk
-    log['closed_issues'] =contc
+  log['open_issues'] = contk
+  log['closed_issues'] =contc
+  if log.get('average_stars') is None :
+     log['average_stars'] =0.0
     
     
-    
-    for k, v in dict(log).items():
+  for k, v in dict(log).items():
       
-      if v is None:
-        del log[k]
+    if v is None:
+      del log[k]
         
   f=usr.get_followers()
  #print(f.totalCount)
   #print(json.dumps(log))
-  print(log)
+  
   log['followers'] = f.totalCount
-  if '_id' in log :
-    del log['_id']
+  #if log.get('_id') is not None :
+   #  del log['_id']
   db.githubuser.insert_one(log)
+  print(log)
 
 printer(usr)  
 #print("------------------followers---------------------------------")
