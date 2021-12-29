@@ -20,7 +20,7 @@ def Average(lst):
     return sum(lst) / len(lst)
 
 tk = os.getenv('GITHUB_PAT')
-g= Github("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")
+g= Github("")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 
