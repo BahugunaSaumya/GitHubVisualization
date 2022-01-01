@@ -19,8 +19,6 @@ deadline = datetime.combine(
 def Average(lst):
     return sum(lst) / len(lst)
 
-tk = os.getenv('GITHUB_PAT')
-g= Github("")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 
