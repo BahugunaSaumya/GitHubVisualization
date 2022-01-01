@@ -20,10 +20,9 @@ def Average(lst):
     return sum(lst) / len(lst)
 
 tk = os.getenv('GITHUB_PAT')
-g= Github("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")
+g= Github("")
 #name= input("name:")
-usr = g.get_user(sys.argv[1])
-
+usr = g.get_organization(sys.argv[1])
 #print(f.totalCount)
 from collections import defaultdict
 
@@ -75,18 +74,15 @@ def printer(usr):
   if log.get('total_commits') is None :
      log['total_commits'] =0     
   
-  #print("user:" + usr.login)
+  print("user:" + usr.login)
   log['login']=names[usr.login].replace(" ", "") 
-  if usr.name is not None: 
-    print("fullname: " +usr.name)
+    
+  print("fullname: " +usr.name)
   log['fullname']=names[usr.name]
   
    # print("location: " +usr.location)
-  if usr.location is not None: 
-   log['location']=usr.location.replace(",", "")
-  else:
-    log['location'] = 'NOVALUE'
-
+  log['location']=usr.location.replace(",", "")
+  
    # print("company: " +usr.company)
   log['company']=usr.company
   #print(Average(a))
@@ -97,14 +93,12 @@ def printer(usr):
   log['closed_issues'] =contc
   if log.get('average_stars') is None :
      log['average_stars'] =0.0
-  if log.get('fullname') is None :
-     log['fullname'] ='NAME'  
-  if log.get('average_stars') is None :
-     log['average_stars'] =0.0  
-  """for k, v in dict(log).items():
+    
+    
+  for k, v in dict(log).items():
       
     if v is None:
-      del log[k]"""
+      del log[k]
         
   f=usr.get_followers()
  #print(f.totalCount)

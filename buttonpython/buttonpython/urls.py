@@ -21,7 +21,7 @@ urlpatterns = [
     path('', views.button),
     path('output', views.output,name='script'),
     path('external/', views.external),
-    
+     path('graph/', views.graph),
 ]
 
 

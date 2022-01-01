@@ -57,7 +57,15 @@ def main():
   with open('data.csv', 'w') as f:
       f.write('total_commits,login,fullname,location,followers,company,average_stars,open_issues,closed_issues\n    ')
   # f.write('login,followers\n')
-      mct = db.githubuser.find({'login': {'$exists': True}})
+      mct = list(db.githubuser.find({'login': {'$exists': True}}))
+      print(mct)
+      """ for m in mct:
+        del m['_id']
+        for k,v in m.items():
+         
+            
+         print(str(k) +':'+str(v))
+        """ 
       for user in mct:
         #c=c+1
         if user.get('company') is None :
@@ -66,16 +74,16 @@ def main():
            user['fullname'] = 'FULLNAME' 
         del user['_id']
         b=list(user.keys())
-        pprint.pprint(json.dumps(user))
+        #pprint.pprint(json.dumps(user))
         
        # print()
-        a[user['login']]=user
+       # a[user['login']]=user
          
         
        
         f.write(str(user['total_commits']) + ',' + str(user['login'])+ ',' + str(user['fullname'])+ ',' + str(user['location'])+ ',' + str(user['followers'])+ ',' + str(user['company'])+ ',' + str(user['average_stars'])+ ',' + str(user['open_issues'])+ ',' + str(user['closed_issues'])+'\n')
-  print(a)
-  return a 
+  #print(a)
+  return mct 
   
          
     

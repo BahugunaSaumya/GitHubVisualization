@@ -48,6 +48,6 @@ def main():
 # Watch as bars chart population changes
  #fig=px.bar(df, x="total_commits", y="average_stars", color="fullname",
  #animation_frame="followers", animation_group="company") 
- fig.show()
+ fig.write_html("./template/file.html")
 if __name__ == "__main__":
    main()
