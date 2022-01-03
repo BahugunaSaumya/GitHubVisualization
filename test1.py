@@ -22,30 +22,42 @@ def Average(lst):
 tk = os.getenv('GITHUB_PAT')
 g= Github("")
 #name= input("name:")
-usr = g.get_organization(sys.argv[1])
+usr = g.get_user(sys.argv[1])
+
 #print(f.totalCount)
 from collections import defaultdict
 
 names=defaultdict(faker.name)
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
+print(g.get_rate_limit())
+
 db = client.classDB
 def printer(usr):
+  print(usr.events_url)
   log = {}
   rep=usr.get_repos()
   a=[]
+  l=[]
   c=0
   count=0
   contk=0
   contc=0
   for repw in rep:
+    e=repw.get_events()
+    for w in e:
+      print(w)
     count=count+1
+    print("n")
+    print(repw.get_topics())
+    print(repw.get_pull)
     #print(count)
-   # log['repo'+str(count)]=repw["full_name"]
-    #print(repw)
+    log['repo'+str(count)]=repw
+    print(repw)
     d=repw.stargazers_count
     #print(repw.stargazers_count)
     a.append(d)
+  
   
 
   
@@ -57,6 +69,9 @@ def printer(usr):
       # print("commits for "+ str(t.name)+ " " +str(repw.get_commits(t.name).totalCount) )
        c= c+(repw.get_commits(t.name).totalCount)
        log['total_commits'] = c
+       #l.append(t)
+       print(repw.get_commit(t.name).commit.author.date)
+
       else:
      #  print("no latest commits")
        break
@@ -73,16 +88,19 @@ def printer(usr):
      contc=contc+1
   if log.get('total_commits') is None :
      log['total_commits'] =0     
-  
-  print("user:" + usr.login)
+ 
+  #print("user:" + usr.login)
   log['login']=names[usr.login].replace(" ", "") 
-    
-  print("fullname: " +usr.name)
+  if usr.name is not None: 
+    print("fullname: " +usr.name)
   log['fullname']=names[usr.name]
   
    # print("location: " +usr.location)
-  log['location']=usr.location.replace(",", "")
-  
+  if usr.location is not None: 
+   log['location']=usr.location.replace(",", "")
+  else:
+    log['location'] = 'NOVALUE'
+  print(count) 
    # print("company: " +usr.company)
   log['company']=usr.company
   #print(Average(a))
@@ -93,21 +111,23 @@ def printer(usr):
   log['closed_issues'] =contc
   if log.get('average_stars') is None :
      log['average_stars'] =0.0
-    
-    
-  for k, v in dict(log).items():
+  if log.get('fullname') is None :
+     log['fullname'] ='NAME'  
+  if log.get('average_stars') is None :
+     log['average_stars'] =0.0  
+  """for k, v in dict(log).items():
       
     if v is None:
-      del log[k]
+      del log[k]"""
         
   f=usr.get_followers()
  #print(f.totalCount)
   #print(json.dumps(log))
-  
+  #log['branches']=l
   log['followers'] = f.totalCount
   #if log.get('_id') is not None :
    #  del log['_id']
-  db.githubuser.insert_one(log)
+  #db.githubuser.insert_one(log)
   print(log)
 
 printer(usr)  
@@ -132,6 +152,6 @@ if f.totalCount != 0:
 #return usr.raw_data
 """conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
-db = client.classDB
+db = client.classDB 
 
 db.githubuser.insert_many([log])"""

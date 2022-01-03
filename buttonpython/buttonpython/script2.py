@@ -55,7 +55,7 @@ def main():
         
         m.write(str(user['total_commits']) + ',' + str(user['followers'])+'\n')
   with open('data.csv', 'w') as f:
-      f.write('total_commits,login,fullname,location,followers,company,average_stars,open_issues,closed_issues\n    ')
+      f.write('total_commits,login,fullname,location,followers,company,average_stars,open_issues,closed_issues,branches\n    ')
   # f.write('login,followers\n')
       mct = list(db.githubuser.find({'login': {'$exists': True}}))
       print(mct)
@@ -81,7 +81,7 @@ def main():
          
         
        
-        f.write(str(user['total_commits']) + ',' + str(user['login'])+ ',' + str(user['fullname'])+ ',' + str(user['location'])+ ',' + str(user['followers'])+ ',' + str(user['company'])+ ',' + str(user['average_stars'])+ ',' + str(user['open_issues'])+ ',' + str(user['closed_issues'])+'\n')
+        f.write(str(user['total_commits']) + ',' + str(user['login'])+ ',' + str(user['fullname'])+ ',' + str(user['location'])+ ',' + str(user['followers'])+ ',' + str(user['company'])+ ',' + str(user['average_stars'])+ ',' + str(user['open_issues'])+ ',' + str(user['closed_issues'])+ str(user['branches'])+'\n')
   #print(a)
   return mct 
   

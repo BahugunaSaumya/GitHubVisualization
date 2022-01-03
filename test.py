@@ -19,6 +19,8 @@ deadline = datetime.combine(
 def Average(lst):
     return sum(lst) / len(lst)
 
+tk = os.getenv('GITHUB_PAT')
+g= Github("")
 #name= input("name:")
 usr = g.get_user(sys.argv[1])
 
@@ -33,12 +35,14 @@ def printer(usr):
   log = {}
   rep=usr.get_repos()
   a=[]
+  l=[]
   c=0
   count=0
   contk=0
   contc=0
   for repw in rep:
     count=count+1
+    print(repw.get_topics())
     #print(count)
    # log['repo'+str(count)]=repw["full_name"]
     #print(repw)
@@ -56,6 +60,9 @@ def printer(usr):
       # print("commits for "+ str(t.name)+ " " +str(repw.get_commits(t.name).totalCount) )
        c= c+(repw.get_commits(t.name).totalCount)
        log['total_commits'] = c
+       #l.append(t)
+       print(repw.get_commit(t.name).commit.author.date)
+
       else:
      #  print("no latest commits")
        break
@@ -107,7 +114,7 @@ def printer(usr):
   f=usr.get_followers()
  #print(f.totalCount)
   #print(json.dumps(log))
-  
+  #log['branches']=l
   log['followers'] = f.totalCount
   #if log.get('_id') is not None :
    #  del log['_id']
@@ -136,6 +143,6 @@ if f.totalCount != 0:
 #return usr.raw_data
 """conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
-db = client.classDB
+db = client.classDB 
 
 db.githubuser.insert_many([log])"""
