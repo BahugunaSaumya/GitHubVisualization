@@ -20,8 +20,9 @@ def Average(lst):
     return sum(lst) / len(lst)
 
 tk = os.getenv('GITHUB_PAT')
-g= Github("")
+g= Github("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")
 #name= input("name:")
+print(g.get_rate_limit())
 usr = g.get_user(sys.argv[1])
 
 #print(f.totalCount)
@@ -31,41 +32,55 @@ names=defaultdict(faker.name)
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
 db = client.classDB
+
 def printer(usr):
   log = {}
   rep=usr.get_repos()
   a=[]
   l=[]
+  size=[]
+  
   c=0
   count=0
   contk=0
   contc=0
   for repw in rep:
+    temp={}  
+    #print("repo_commits"+str(repw.get_commits().totalCount))
+    temp['size']=(repw.size)
     count=count+1
+    temp['fork']=repw.forks
     print(repw.get_topics())
     #print(count)
+    temp['name']=repw.full_name.split('/')[1]
+    #l.append(repw.full_name.split('/')[1])
    # log['repo'+str(count)]=repw["full_name"]
-    #print(repw)
+    print(repw.full_name)
     d=repw.stargazers_count
     #print(repw.stargazers_count)
     a.append(d)
-  
-
+    l.append(temp)
+    
   
    # print(list(repw.get_branches()))
   #print(len(list(repw.get_branches()))) 
+    
     b= repw.get_branches()
     for t in b:
-      if repw.get_commit(t.name).commit.author.date > deadline :
-      # print("commits for "+ str(t.name)+ " " +str(repw.get_commits(t.name).totalCount) )
-       c= c+(repw.get_commits(t.name).totalCount)
-       log['total_commits'] = c
-       #l.append(t)
-       print(repw.get_commit(t.name).commit.author.date)
-
-      else:
-     #  print("no latest commits")
-       break
+      print(t.name)
+      r=repw.get_commits(t.name).totalCount
+      c+=r
+      print("total commits="+str(r))
+    #   if repw.get_commit(t.name).commit.author.date > deadline :
+    #   # print("commits for "+ str(t.name)+ " " +str(repw.get_commits(t.name).totalCount) )
+    #    c= c+(repw.get_commits(t.name).totalCount)
+    
+    #    #l.append(t)
+    #    print(repw.get_commit(t.name).commit.author.date)
+    log['total_commits'] = c      
+    #   else:
+    #  #  print("no latest commits")
+    #    break
     open_issues = repw.get_issues(state='open')
     #print(list(repw.get_labels()))
     for issue in open_issues:
@@ -77,6 +92,10 @@ def printer(usr):
     for issu in closed_issues:
      #print(issue)
      contc=contc+1
+  if not l:
+    log ["repo"] =[]
+  else:      
+   log["repo"]=l   
   if log.get('total_commits') is None :
      log['total_commits'] =0     
   
@@ -112,10 +131,13 @@ def printer(usr):
       del log[k]"""
         
   f=usr.get_followers()
+  fo=usr.get_following()
+   
  #print(f.totalCount)
   #print(json.dumps(log))
   #log['branches']=l
   log['followers'] = f.totalCount
+  log['following']=fo.totalCount
   #if log.get('_id') is not None :
    #  del log['_id']
   db.githubuser.insert_one(log)
@@ -123,13 +145,13 @@ def printer(usr):
 
 printer(usr)  
 #print("------------------followers---------------------------------")
-f=usr.get_followers()
+#f=usr.get_followers()
 #print(f.totalCount)
 
-if f.totalCount != 0:
- for e in f:
+#if f.totalCount != 0:
+ #for e in f:
  
-    printer(e)
+  #  printer(e)
    
 
 #print(usr.bio) 

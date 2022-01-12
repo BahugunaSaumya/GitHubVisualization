@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<!-- <button action='graph/'> Graph</button> -->
+{%include 'Churn_bar.html'%}
+
+<span id="hello"> 
+
+
+
+
+</span>
+{%include 'Churn_Rate.html'%}
+<div id="a34">
+{%block header%}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'compare' %}">Compare</a>
+</li>
+<style>
+    #a34{
+        opacity: 0;
+        display: none;
+    }
+</style>
+</div>
+{%endblock%}
+
+{%endblock%}
+<style>
+    .fd{
+        color: white;
+    }
+    .hello{
+        box-sizing: border-box;
+    }
+</style>

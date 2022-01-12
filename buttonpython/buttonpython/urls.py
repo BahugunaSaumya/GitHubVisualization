@@ -18,9 +18,15 @@ from django.urls import path
 from . import views 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.button),
-    path('output', views.output,name='script'),
-    path('external/', views.external),
+    path('', views.button,name=''),
+    path('home/',views.home,name='home'),
+    path('churn/',views.external,name='churn'),
+    #path('output', views.output,name='script'),
+    path('compare/',views.compare,name='compare'),
+    path('data/',views.data),
+     
+    path('home/data/',views.data),
+    #path('external/', views.external),
      path('graph/', views.graph),
 ]
 

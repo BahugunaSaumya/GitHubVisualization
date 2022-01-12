@@ -1,0 +1,110 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User Search</title>
+    <link rel="stylesheet" href="{% static 'github/font.css' %}">
+    <link rel="stylesheet" href="{% static 'github/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'github/style.css' %}">
+</head>
+<div id="a34">
+{%block header%}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'churn' %}">Churn</a>
+</li>
+<style>
+    #a34{
+        opacity: 0;
+        display: none;
+    }
+</style>
+{%endblock%}
+</div>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="user_info">
+                <div class="user_img">
+                    <img src= "{% static 'img/logo6.png'%}">
+                </div>
+                <div class="user_name">
+                    <h3>Login Name</h3>
+                    {%for data in data1%}
+                    <h1>{{data.fullname}}</h1>
+                    {%endfor%}
+
+ 
+                </div>
+                <div class="follow">
+                    <div class="item followers_">
+                        <p>Followers</p>
+                        {%for data in data1%}
+                        <span>{{data.followers}}</span>
+                        {%endfor%}
+    
+                    </div>
+                    <div class="item follow_">
+                        <p>Following</p>
+                        {%for data in data1%}
+                        <span>{{data.following}}</span>
+                        {%endfor%}  
+                    </div>
+                    <!-- <div class="item followers_">
+                        <p>Open-Issues</p>
+                        {%for data in data1%}
+                        <span>{{data.open_issues}}</span>
+                        {%endfor%}  
+                    </div>
+                    <div class="item follow_">
+                        <p>Closed-Issues</p>
+                        {%for data in data1%}
+                        <span>{{data.closed_issues}}</span>
+                        {%endfor%}  
+                    </div>
+                    <div class="item followers_">
+                        <p>Total Commits</p>
+                        {%for data in data1%}
+                        <span>{{data.total_commits}}</span>
+                        {%endfor%}  
+                    </div> -->
+                </div>
+            </div>
+            <div class="repo">
+                <h1>Repos</h1>
+                <div class="repo_details">
+                    {%for data in data1%}
+                     {%for r in repos%}
+                        <div class="item_">
+                        <div class="repo_name"><span>{{r.name}}</span></div>
+                        <div class="repo_details_">
+                            <div class="info_ star">
+                                <i class="fa fa-star-o"></i>{{data.average_stars}}
+                            </div>
+                            <div class="info_ fork">
+                                <p><i class="fa fa-code-fork"></i>fork: {{r.fork}}</p>
+                            </div>
+                            <div class="info_ size">
+                                <p><i class="fa fa-file"></i>{{r.size}}kb</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <!-- <script src="{% static 'github/app.js' %}"></script> -->
+</body>
+
+
+</html>
+{%endblock%}
