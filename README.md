@@ -3,7 +3,7 @@ This is my submission for the Github Visualization
 
 
 To run my implementation:
-the device running the files will require pip install django, pip install ploly pip install pandas.( install.sh file should install all these modules)
+the device running the files will require pip install django, pip install plotly, pip install pandas,pip install Faker.( running install.sh file should install all these modules)
 inside the buttonpython/script there is a file named config.py where you have to add your github token
 run the run.sh and run-db.sh file inside buttonpython in two diffrent windows
 the file run.sh will have the servers address 172.0.0.1:8001 which is to be opened
