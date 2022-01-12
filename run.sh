@@ -1,1 +1,1 @@
-buttonpython/run-db.sh
+bash buttonpython/run-db.sh

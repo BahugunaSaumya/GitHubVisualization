@@ -5,19 +5,25 @@ from queue import Empty
 from re import template
 import sys
 import json
+from buttonpython.settings import BASE_DIR
+
+sys.path.append("..//")
 from django.http import JsonResponse
 from django.http.response import HttpResponse, HttpResponseServerError
 from django.shortcuts import render,redirect
+from pymongo import message
 print(os.getcwd())
-from buttonpython.settings import BASE_DIR
-from . import chart as c
+
+from script import chart as c
 import requests
 import pprint
 import pandas as pd
 #sys.path.append('D:\study\csu33012-python-github\\')
-from . import script3 as p
-from . import script2 as s
-from . import chart   as a
+from script import script3 as p
+from script import script2 as s
+from script import script3 as scrip3
+from script import script4 as scrip4
+from script import chart   as a
 from collections import defaultdict
 from subprocess import Popen, PIPE, STDOUT
 import sys
@@ -56,15 +62,19 @@ def external(request):
     print(str(inp))
     print(str(inp1))
     #print("hello"+str(inp1))
-    hello=run([sys.executable,'code\\cleardb.py'],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'code\\script3.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script\\script3.py'],shell=False,stdout=PIPE)
     print(hello)
     print(kma)
     #hel=run([sys.executable,'D:\\study\\GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
     #print(hel)
-    hel=run([sys.executable,'code\\churn.py',inp,inp1],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'code\\script3.py'],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script\\churn.py',inp,inp1],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script\\script3.py'],shell=False,stdout=PIPE)
     print(hel)
+    scripout=scrip3.main()
+    if scripout=="error":
+     return redirect("")
+    #messages.error(request,"Sorry something went wrong ")  
     print(kma)
     #out=run([sys.executable,'D:\study\csu33012-python-github\\script2.py'],shell=False,stdout=PIPE)
     #out = p.main()
@@ -81,7 +91,7 @@ def external(request):
             
             
       #   print(str(k) +':'+str(v))
-    CHART=run([sys.executable,'code\\chart.py'],shell=False,stdout=PIPE)
+    CHART=run([sys.executable,'script\\chart.py'],shell=False,stdout=PIPE)
     #a.main()
 #    c.main() ,inp, inp1
     #js = json.dumps(out)
@@ -100,16 +110,16 @@ def data(request):
     with open("data//userdata.txt", "w+") as f:
       #f.write('username,date\n ')
       f.write(str(inp)+","+str(inp1)+"\n")
-    hello=run([sys.executable,'code\\cleardb.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
     inp= request.POST.get('param')
     inp1=request.POST.get('para')
     print(inp1)
     with open("data//userdata.txt", "w+") as f:
       #f.write('username,date\n ')
       f.write(str(inp)+","+str(inp1)+"\n")
-    hel=run([sys.executable,'code\\test.py',inp],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script\\test.py',inp],shell=False,stdout=PIPE)
     print(hel)
-    out=run([sys.executable,'code\\script2.py'],shell=False,stdout=PIPE)
+    out=run([sys.executable,'script\\script2.py'],shell=False,stdout=PIPE)
     print(out)
     #json_pretty = json.dumps(out, sort_keys=True, indent=4)
     out=s.main()
@@ -157,17 +167,23 @@ def compare(request):
     print(str(inp))
     print(str(inp1))
     #print("hello"+str(inp1))
-    hello=run([sys.executable,'code\\cleardb.py'],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'code\\script4.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script\\script4.py'],shell=False,stdout=PIPE)
     print(hello)
     print(kma)
+    
+    
     #hel=run([sys.executable,'D:\\study\\GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
     #print(hel)
-    hel=run([sys.executable,'code\\filesize.py',inp,inp1],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'code\\script4.py'],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script\\filesize.py',inp,inp1],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script\\script4.py'],shell=False,stdout=PIPE)
     print(hel)
     print(kma)
-    CHART=run([sys.executable,'code\\chart1.py'],shell=False,stdout=PIPE)
+    scripout= scrip4.main()
+    if scripout=="error":
+     return redirect("")
+    #messages.error(request,"Sorry something went wrong ") 
+    CHART=run([sys.executable,'script\\chart1.py'],shell=False,stdout=PIPE)
     print(CHART.stdout)
     print("current location")
     print(os.getcwd()) 

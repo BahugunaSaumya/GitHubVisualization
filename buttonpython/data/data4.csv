@@ -1,3 +1,13 @@
 reponame,reposize,branches
-GitHubVisualization,4.853,1
-SoftwareEngineeringTCD,0.39,5
+carousel,0.092,1
+d3,41.59,34
+emacs.d,0.052,1
+github,0.442,1
+github-get,0.017,1
+github-yesod,0.132,1
+http-link-header,0.043,1
+hw3_rottenpotatoes,0.06,1
+org-reveal,0.302,4
+servant-auth,0.317,5
+Spoon-Knife,1407.736,3
+yesod,9.082,19

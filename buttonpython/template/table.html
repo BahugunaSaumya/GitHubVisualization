@@ -76,6 +76,9 @@
                 </div>
             </div>
             <div class="repo">
+                {%for data in data1%}
+                {{data.total_commits}}
+                {%endfor%}
                 <h1>Repos</h1>
                 <div class="repo_details">
                     {%for data in data1%}

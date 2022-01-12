@@ -30,6 +30,8 @@ def main():
   # f.write('login,followers\n')
       mct = list(db.githubuser.find({'filename': {'$exists': True}}))
       print(mct)
+      if not mct:
+        return "error"
       """ for m in mct:
         del m['_id']
         for k,v in m.items():

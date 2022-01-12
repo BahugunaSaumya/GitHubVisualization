@@ -1,12 +1,14 @@
 
+from queue import Empty
 import pymongo              # for mongodb access
 import pprint 
 import json
-import pandas as pd
 # a script to do python based access to the mongodb
 # step 6 - Let's do a useful search
+
 def main():
-  print("Demonstration python based mongodb access")
+
+ 
 
               # for pretty printing db data
 
@@ -18,7 +20,6 @@ def main():
 
 # Create a database
   db = client.classDB
-  import os
 
 
 # now that we have data we want to generate an output that works for a visualisation
@@ -42,54 +43,54 @@ def main():
   a={}
   c=0
   
-  """ with open('data1.csv', 'w') as m:
-      m.write('total_commits,average_stars\n')
-  # f.write('login,followers\n')
-      dct = db.githubuser.find({'login': {'$exists': True}})
-      for user in dct:
-        #c=c+1
+  # with open('data1.csv', 'w') as m:
+  #     m.write('total_commits,average_stars\n')
+  # # f.write('login,followers\n')
+  #     dct = db.githubuser.find({'login': {'$exists': True}})
+  #     for user in dct:
+  #       #c=c+1
        
-        del user['_id']
-        b=list(user.keys())
-        #pprint.pprint(json.dumps(user))
-        b=list(user.keys())
-       # print()
+  #       del user['_id']
+  #       b=list(user.keys())
+  #       #pprint.pprint(json.dumps(user))
+  #       b=list(user.keys())
+  #      # print()
         
-        m.write(str(user['total_commits']) + ',' + str(user['followers'])+'\n')"""
-  print(os.getcwd())       
-  with open('.//data//data4.csv', 'w') as f:
-      f.write('reponame,reposize,branches\n')
+  #       m.write(str(user['total_commits']) + ',' + str(user['followers'])+'\n')
+  with open('data//data.csv', 'w') as f:
+      f.write('total_commits,login,fullname,location,followers,company,average_stars,open_issues,closed_issues\n    ')
   # f.write('login,followers\n')
-      mct = list(db.githubuser.find({'reponame': {'$exists': True}}))
+      mct = list(db.githubuser.find({'login': {'$exists': True}}))
       print(mct)
+      if not mct:
+        print("empty")
+        return "error"
       """ for m in mct:
         del m['_id']
         for k,v in m.items():
          
             
          print(str(k) +':'+str(v))
-       """
+        """ 
       for user in mct:
         #c=c+1
-        """if user.get('company') is None :
+        if user.get('company') is None :
            user['company'] = 'BASE'  
         if user.get('fullname') is None :
-           user['fullname'] = 'FULLNAME'""" 
+           user['fullname'] = 'FULLNAME' 
         del user['_id']
         b=list(user.keys())
         #pprint.pprint(json.dumps(user))
-        print(b)
+        
        # print()
        # a[user['login']]=user
-        print(user)
-       # print(user['date'])
+         
         
-        #user['date']=pd.to_datetime(user['date']).dt.strftime("%d %b,%Y — %I:%M %p")
        
-        f.write(str(user['reponame'])+ ',' + str(user['reposize'])+ ',' + str(user['branches'])+'\n')
+        f.write(str(user['total_commits']) + ',' + str(user['login'])+ ',' + str(user['fullname'])+ ',' + str(user['location'])+ ',' + str(user['followers'])+ ',' + str(user['company'])+ ',' + str(user['average_stars'])+ ',' + str(user['open_issues']) + ',' + str(user['closed_issues']) +'\n')
   #print(a)
   return mct 
-  
+ 
          # str(user['branches'])+ str(user['filename'])+
     
     
