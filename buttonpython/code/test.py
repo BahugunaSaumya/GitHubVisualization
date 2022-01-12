@@ -21,6 +21,7 @@ def Average(lst):
     return sum(lst) / len(lst)
 
 tk = os.getenv('GITHUB_PAT')
+print(con.GITHUB_TOKEN)
 g= Github(con.GITHUB_TOKEN)
 #name= input("name:")
 print(g.get_rate_limit())

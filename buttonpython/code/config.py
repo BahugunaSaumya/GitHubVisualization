@@ -1,1 +1,1 @@
-GITHUB_TOKEN = 'Enter_Github_Token_Here'
+GITHUB_TOKEN = 'ENTER GITHUB TOKEN'
