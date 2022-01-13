@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from django.http.response import HttpResponse, HttpResponseServerError
 from django.shortcuts import render,redirect
 from pymongo import message
+print("This is the directory")
 print(os.getcwd())
 
 from script import chart as c
@@ -62,14 +63,14 @@ def external(request):
     print(str(inp))
     print(str(inp1))
     #print("hello"+str(inp1))
-    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'script\\script3.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script//cleardb.py'],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script//script3.py'],shell=False,stdout=PIPE)
     print(hello)
     print(kma)
-    #hel=run([sys.executable,'D:\\study\\GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
+    #hel=run([sys.executable,'D:\\study//GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
     #print(hel)
-    hel=run([sys.executable,'script\\churn.py',inp,inp1],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'script\\script3.py'],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script//churn.py',inp,inp1],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script//script3.py'],shell=False,stdout=PIPE)
     print(hel)
     scripout=scrip3.main()
     if scripout=="error":
@@ -91,7 +92,7 @@ def external(request):
             
             
       #   print(str(k) +':'+str(v))
-    CHART=run([sys.executable,'script\\chart.py'],shell=False,stdout=PIPE)
+    CHART=run([sys.executable,'script//chart.py'],shell=False,stdout=PIPE)
     #a.main()
 #    c.main() ,inp, inp1
     #js = json.dumps(out)
@@ -110,16 +111,17 @@ def data(request):
     with open("data//userdata.txt", "w+") as f:
       #f.write('username,date\n ')
       f.write(str(inp)+","+str(inp1)+"\n")
-    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script//cleardb.py'],shell=False,stdout=PIPE)
     inp= request.POST.get('param')
     inp1=request.POST.get('para')
     print(inp1)
+    print(os.getcwd())
     with open("data//userdata.txt", "w+") as f:
       #f.write('username,date\n ')
       f.write(str(inp)+","+str(inp1)+"\n")
-    hel=run([sys.executable,'script\\test.py',inp],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script//test.py',inp],shell=False,stdout=PIPE)
     print(hel)
-    out=run([sys.executable,'script\\script2.py'],shell=False,stdout=PIPE)
+    out=run([sys.executable,'script//script2.py'],shell=False,stdout=PIPE)
     print(out)
     #json_pretty = json.dumps(out, sort_keys=True, indent=4)
     out=s.main()
@@ -167,23 +169,23 @@ def compare(request):
     print(str(inp))
     print(str(inp1))
     #print("hello"+str(inp1))
-    hello=run([sys.executable,'script\\cleardb.py'],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'script\\script4.py'],shell=False,stdout=PIPE)
+    hello=run([sys.executable,'script//cleardb.py'],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script//script4.py'],shell=False,stdout=PIPE)
     print(hello)
     print(kma)
     
     
-    #hel=run([sys.executable,'D:\\study\\GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
+    #hel=run([sys.executable,'D:\\study//GitHubVisualization\\test.py',inp],shell=False,stdout=PIPE)
     #print(hel)
-    hel=run([sys.executable,'script\\filesize.py',inp,inp1],shell=False,stdout=PIPE)
-    kma=run([sys.executable,'script\\script4.py'],shell=False,stdout=PIPE)
+    hel=run([sys.executable,'script//filesize.py',inp,inp1],shell=False,stdout=PIPE)
+    kma=run([sys.executable,'script//script4.py'],shell=False,stdout=PIPE)
     print(hel)
     print(kma)
     scripout= scrip4.main()
     if scripout=="error":
      return redirect("")
     #messages.error(request,"Sorry something went wrong ") 
-    CHART=run([sys.executable,'script\\chart1.py'],shell=False,stdout=PIPE)
+    CHART=run([sys.executable,'script//chart1.py'],shell=False,stdout=PIPE)
     print(CHART.stdout)
     print("current location")
     print(os.getcwd()) 

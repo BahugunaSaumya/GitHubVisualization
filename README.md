@@ -37,4 +37,12 @@ plotly
 pandas
 django
 Faker
+pymongo
 
+
+There might be some colplications to run Django if so please contact.
+
+
+PS: test1 and scrip5 and chart 3 are for a diffrent visualization (visualizing files based on there size and branches inside a repository portrayerd as circles but are not added in the final implementation as were not showing useful visualization or metric and also have hight time complexity.)
+
+Thank you

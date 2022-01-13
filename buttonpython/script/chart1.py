@@ -5,7 +5,7 @@ import pprint
 
 import os
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 # Loading the data
 from pandas.api.types import CategoricalDtype
@@ -55,7 +55,7 @@ fig4.update_yaxes(automargin=True)
 #from plotly.offline import init_notebook_mode, iplot
 #fig = dict(data = data, layout = layout)
 #iplot(fig, show_link=False)
-fig4.write_html("template\\compare_graph.html")
+fig4.write_html("template//compare_graph.html")
 print("done")
 # bins represent the number of bars to make
 # Can define x label, color, title

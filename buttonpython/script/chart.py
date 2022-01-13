@@ -1,4 +1,4 @@
-from matplotlib import colorbar, legend
+
 import plotly.express as px
 import plotly.graph_objects as go
 import pymongo
@@ -11,10 +11,10 @@ print(os.getcwd())
 
 
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 # Loading the data
-from pandas.api.types import CategoricalDtype
+
 
 #sys.path.append(BASE_DIR)
  
@@ -31,7 +31,7 @@ def main():
  # Control delimiters, rows, column names with read_csv (see later) 
 
  print(os.getcwd())
- #sys.path.append('D:\\study\\GitHubVisualization\\buttonpython\\buttonpython')
+ #sys.path.append('D://study//GitHubVisualization//buttonpython//buttonpython')
  #df = pd.read_csv("..//data.csv") 
  df = pd.read_csv("data//data3.csv")   
  #mct = db.githubuser.find({'login': {'$exists': True}})
@@ -98,7 +98,7 @@ def main():
     title="Total Change",
     xaxis_title="Filename",
     yaxis_title="Total Change",)
- fig3.write_html("template\\changes.html")
+ fig3.write_html("template//changes.html")
  print("shown")
  #"""
  #
@@ -161,9 +161,9 @@ def main():
 #fig = dict(data = data, layout = layout)
 #iplot(fig, show_link=False)
  #fig.show()
- fig.write_html("template\\Churn_bar.html")
+ fig.write_html("template//Churn_bar.html")
  #fig4.show()
- fig5.write_html("template\\Churn_Rate.html")
+ fig5.write_html("template//Churn_Rate.html")
 
 
 if __name__ == "__main__":
