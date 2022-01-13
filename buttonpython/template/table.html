@@ -76,9 +76,26 @@
                 </div>
             </div>
             <div class="repo">
-                {%for data in data1%}
-                {{data.total_commits}}
-                {%endfor%}
+                <table style=border:1px>
+                 <tr>
+                     <th>Total Commits</th>
+                     <th>Open Issues</th>
+                     <th>Closed Issues</th>
+                     <th>Average-Stars</th>
+                 </tr>
+                 {%for data in data1%}         
+                 <tr>
+                     <td style="text-align:center">{{data.total_commits}}</td>
+                     <td style="text-align:center">{{data.open_issues}}</td>
+                     <td style="text-align:center">{{data.closed_issues}}</td>
+                     <td style="text-align:center">{{data.average_stars}}</td>
+                 </tr>
+                 {%endfor%}
+                </table>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;  
                 <h1>Repos</h1>
                 <div class="repo_details">
                     {%for data in data1%}
@@ -87,7 +104,7 @@
                         <div class="repo_name"><span>{{r.name}}</span></div>
                         <div class="repo_details_">
                             <div class="info_ star">
-                                <i class="fa fa-star-o"></i>{{data.average_stars}}
+                                <i class="fa fa-star-o"></i>{{r.stars}}
                             </div>
                             <div class="info_ fork">
                                 <p><i class="fa fa-code-fork"></i>fork: {{r.fork}}</p>

@@ -12,3 +12,29 @@ after clicking on search user a page will be displayed will all the details of t
 on the top right in the navigation bar a "churn" will appear clicking on that will redirect to a page which will show the code churn details of the user
 deletion/addtions * 100
 on the top right there will be a new "compare" option visible which will show the ratio of repositories to number of branches with the size of each value depending on the size of the repository
+
+
+
+please refer to about page to check details about hte implementation
+
+
+
+
+------------------------------------------------------
+
+I recently discovered that to run a django app on a diffrent system need some specifications 
+
+
+please refer to this link to run:
+
+
+https://www.codespeedy.com/clone-and-run-a-django-project-from-github/
+
+
+
+I have install.sh to install
+plotly
+pandas
+django
+Faker
+

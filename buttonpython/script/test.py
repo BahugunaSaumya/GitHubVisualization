@@ -60,6 +60,7 @@ def printer(usr):
     print(repw.full_name)
     d=repw.stargazers_count
     #print(repw.stargazers_count)
+    temp['stars']=d
     a.append(d)
     l.append(temp)
     
@@ -116,6 +117,7 @@ def printer(usr):
    # print("company: " +usr.company)
   log['company']=usr.company
   #print(Average(a))
+  
   log['average_stars']=Average(a)  
   #print(count)
   #print("issues:"+str(contk))  

@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.button,name=''),
     path('home/',views.home,name='home'),
+    path('about/',views.about,name='about'),
     path('churn/',views.external,name='churn'),
     #path('output', views.output,name='script'),
     path('compare/',views.compare,name='compare'),

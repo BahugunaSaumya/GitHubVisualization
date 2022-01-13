@@ -188,3 +188,6 @@ def compare(request):
     print("current location")
     print(os.getcwd()) 
     return render(request,'compare.html',{})   
+
+def about(request):
+    return render(request,'about.html',{})      

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block content%}
+<head>{% load static %}</head>
+ <div class="container-fluid padding"data-aos="fade-up"
+		data-aos-offset="200"
+		data-aos-delay="50"
+		data-aos-duration="1000">
+	<div class="row padding">
+		<div class="col-md-12 col-lg-6">
+			<h2>The Main page</h2>
+			   <p>This page has two Search bars</p>
+            
+                <li>
+                 This bar requires username of the repository 
+                </li>
+
+                <li>
+                    This bar requires a numeric value of the deadline in months of the data( say for 2 months of data from the present date "2" should be entered)
+                </li>
+            
+			<p>Clicking on search will launch the website</p>
+			<p>If the user is not found or any error is faced you will Redirected to the base page</p>
+				<br>
+			
+		</div>
+		<div class="col-lg-6">
+			<img src="{% static 'img/page1.jpg'%}" class="img-fluid">
+		</div>
+	</div>
+    <hr class="my-4">
+</div>
+
+
+
+<!--- Two Column Section -->
+<div class="container-fluid padding" data-aos="fade-up"
+		data-aos-offset="200"
+		data-aos-delay="50"
+		data-aos-duration="1000">
+	<div class="row padding">
+		<div class="col-md-12 col-lg-6">
+			<h2>The 2nd page</h2>
+			<p>This page has all the data imported from github api about the user i.e.</p>
+           
+                <li>
+                    Total Commits
+                </li>
+                <li>
+                    Total Open Issues
+                </li>
+                <li>
+                    Total Closed Issues
+                </li>
+
+                <li>
+                    Repository name
+                </li>
+                <li>
+                    Fork's per Repository
+                </li>
+                <li>
+                    stars pper repositoy
+                </li>
+                <li>Size of each repository</li>
+                <li>Faker Name and Login Id("Privacy is important" :-)</li>
+           
+			<p>The Chrun button on the Top right corner will direct to a new page  if the Months that were netered in the first page has no Commits you will be redirected to first page 
+			</p>
+            <p>Clicking on the home button will redirect to homepage so will the icon on the top left 
+			</p>
+            <hr class="my-4">
+		</div>
+		<div class="col-lg-6">
+			<img src="{% static 'img/page2.jpg'%}" class="img-fluid">
+		</div>
+	</div>
+    <div class="row padding">
+		<div class="col-md-12 col-lg-6">
+			<h2>The 3rd Page Churn</h2>
+			<p>This page will show three interactive graphs based on 100 commits in the duration of months entered on the first page</p>
+            <li>
+                Changes
+                <li>
+                    This will show all the changes that were made on a file as in how much data was pushed in the duration of the months entered on the first page
+                </li>
+                Churn
+                <li>
+                    This will divide the data into deletions and additions which will show how much data was actually used (as explained in my report) 
+                </li>
+                Churn Rate
+                <li>
+                    This Graph groups the date the commits were made into weak and creates a churn rate calculated by
+                    &nbsp;
+                    &nbsp;
+                    
+                </li>
+                <li>
+                   <ol>&nbsp; Number of Files Deleted<br></ol>
+                 <ol>-------------------------------&nbsp;&nbsp;&nbsp; X 100</ol>
+                  <ol>&nbsp; Number of Files Added<br></br>   
+                    (referecend from a thesis cited in my report)</ol>
+                </li>
+            </li>
+			<p>The Compare button on the Top right corner will direct to a new page 
+			</p>
+            <p>Clicking on the home butoon will redirect to homepage 
+			</p>
+
+		</div>
+		<div class="col-lg-6">
+			<img src="{% static 'img/totalchange.jpg'%}" class="img-fluid">
+            <img src="{% static 'img/churn.jpg'%}" class="img-fluid">
+		    <img src="{% static 'img/churnrate.jpg'%}" class="img-fluid">
+        </div>
+	</div>
+	<hr class="my-4">
+</div>
+
+
+<div class="container-fluid padding" data-aos="fade-up"
+		data-aos-offset="200"
+		data-aos-delay="50"
+		data-aos-duration="1000">
+	<div class="row padding">
+		<div class="col-md-12 col-lg-6">
+			<h2>The 4th page Compare</h2>
+			<p>You might need to resixe your screen to view this graph This page uses github to take following data </p>
+         
+                <li>
+                     Repository Size
+                </li>
+                <li>
+                    Number of branches
+                </li>
+                <li>
+                    Repository name
+                </li>
+
+           
+            <p> This shows a scatter plot of  number of branches in the repository where the size of the plot depends on the size of repository to avoid too small repositories to be invisible a line is added</p>
+			<p>Clicking on the home button will redirect to homepage so will the icon on the top left 
+			</p>
+            <hr class="my-4">
+		</div>
+		<div class="col-lg-6">
+            <img src="{% static 'img/page3.jpg'%}" class="img-fluid">
+		</div>
+	</div>
+<style>
+    body{
+    color: aliceblue!important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif!important;
+    font-size: large!important;    
+    }
+    li{
+        column-count: auto;
+    
+    }
+</style>
+
+{%endblock%}
