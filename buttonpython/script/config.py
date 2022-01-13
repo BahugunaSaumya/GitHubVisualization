@@ -1,1 +1,1 @@
-GITHUB_TOKEN = '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'
+GITHUB_TOKEN = 'Enter-Token-Here'
