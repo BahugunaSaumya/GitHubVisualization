@@ -15,7 +15,7 @@ on the top right there will be a new "compare" option visible which will show th
 
 
 
-please refer to about page to check details about hte implementation
+please refer to about page to check details about the implementation
 
 
 
@@ -40,9 +40,9 @@ Faker
 pymongo
 
 
-There might be some colplications to run Django if so please contact.
+There might be some complications to run Django if so please contact.
 
 
-PS: test1 and scrip5 and chart 3 are for a diffrent visualization (visualizing files based on there size and branches inside a repository portrayerd as circles but are not added in the final implementation as were not showing useful visualization or metric and also have hight time complexity.)
+PS: test1 and script5 and chart 3 are for a diffrent visualization (visualizing files based on there size and branches inside a repository portrayerd as circles but are not added in the final implementation as were not showing useful visualization or metric and also have hight time complexity.)
 
 Thank you
